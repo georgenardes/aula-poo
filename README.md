@@ -25,10 +25,25 @@ git clone {endereço}
 ```
 2
 ### adicionando arquivos no stage
+```
 git add . ou nome do arquivo
+```
 3
 ### Para enviar / commitar o código
+```
 git commit -m "Mensagem do commit"
+```
 4
 ### Exportar para nuvem (repositório remoto)
+```
 git push
+```
+
+```java
+public void main (String args[]){
+	int i = 0;
+	i++;
+}
+
+
+
