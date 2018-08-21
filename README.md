@@ -44,8 +44,9 @@ public void main (String args[]){
 	int i = 0;
 	i++;
 }
+``` 
 ## Markdown
-http://github.com - automatic!
-[GitHub](http://github.com)
+
+[GitHub](https://guides.github.com/features/mastering-markdown)
 
 
