@@ -1,7 +1,7 @@
 # George Nardes
 
 ## Objetivo
-Repositório para manter os arquivos da
+Repositório para manter os arquivos da disciplina de POO
 
 ## Comandos importantes para lembrar
 
@@ -20,7 +20,9 @@ git log
 
 1
 ### Clonar Repositório
+```
 git clone {endereço}
+```
 2
 ### adicionando arquivos no stage
 git add . ou nome do arquivo
