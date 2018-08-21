@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class exe7{
     public static void main(String args[]){
 	Scanner s = new Scanner(System.in);
-	double media = 0.0;
-	float notas[] = new float[3];
+	float media = 0;
+	float[] notas = new float[3];
 	String nome;	
 	System.out.println("Digite seu nome: ");
 	nome = s.nextLine();
