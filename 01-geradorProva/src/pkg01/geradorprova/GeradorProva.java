@@ -1,37 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkg01.geradorprova;
+import java.util.Scanner;
 
 /**
  *
- * @author 6473091
+ * @author George
  */
-public class GeradorProva {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-//        Prova p1 = new Prova("Programação");
-//        p1.setLocal("Sala 202 D6");
-//        p1.setData("25/08/2018");
-//        System.out.println(p1.obtemDetalhes());
-        Discursiva d = new Discursiva();
-        d.setPergunta("Qqié");
-        d.setCriteriosCorrecao("Nao sei");
-        d.setPeso(10);
+public class GeradorProva {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
         
-        Objetiva o = new Objetiva();
-        o.setPergunta("Qual das alternativas esta correta?");
-        o.setPeso(10);
-        String[] op = {"A", "B", "C", "D", "E"};
+        Prova p = new Prova();
         
-        o.setOpcoes(op);
-        o.setRespostaCorreta(4);
+        System.out.println("Qual o nome da disciplina?");
+        p.setDisciplina(scan.nextLine()); 
         
+        System.out.println("Qual o local?");
+        p.setLocal(scan.nextLine());
+        
+        System.out.println("Qual a data da prova?");
+        p.setData(scan.nextLine());
+        
+        System.out.println("Qual é o peso da prova?");
+        p.setPeso(scan.nextInt());
+        
+        System.out.println("Quantas questoes discursivas?");
+        p.setQtdQuestoesD(scan.nextInt());
+        
+        Discursiva[] d = new Discursiva[p.getQtdQuestoesD()];
+        
+        for (int i = 0; i < p.getQtdQuestoesD(); i++){
+            String aux = "";
+            System.out.println("Digite a "+(i+1)+"questao:");
+            aux = scan.nextLine();
+            //d[i].setPergunta(aux);
+            System.out.println("Digite o criterio de avaliacao:");
+            aux = scan.nextLine();
+            d[i].setCriteriosCorrecao(aux);
+            System.out.println("Digite o peso da questao:");
+            d[i].setPeso(scan.nextFloat());
+            System.out.println("\n----------------------------\n");
+
+        }
+        
+        
+        
+        
+        
+       
     }
 
 }

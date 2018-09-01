@@ -1,54 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg01.geradorprova;
 
 /**
  *
- * @author 6473091
+ * @author George
  */
 public class Prova {
-    private String nomeDisciplina;
+    private String disciplina;
     private int peso;
     private String local;
     private String data;
+    private int qtdQuestoesD;
+    private int qtdQuestoesO;
     
-    
-    public Prova (String disciplina){
-        this.nomeDisciplina = disciplina;
-        this.peso = 10;
-    }
-    
-    public String obtemDetalhes(){
-        String retorno = "";
-        retorno += "Nome: " + this.getNomeDisciplina() + "\n";
-        retorno += "Peso: " + this.getPeso() + "\n";
-        retorno += "Local: " + this.getLocal() + "\n";
-        retorno += "Data: " + this.getData() + "\n";
-        return retorno;
+    public Prova (){
+        
     }
 
     /**
-     * @return the nomeDisciplina
+     * @return the disciplina
      */
-    public String getNomeDisciplina() {
-        return nomeDisciplina;
+    public String getDisciplina() {
+        return this.disciplina;
     }
 
     /**
-     * @param nomeDisciplina the nomeDisciplina to set
+     * @param disciplina the disciplina to set
      */
-    public void setNomeDisciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 
     /**
      * @return the peso
      */
     public int getPeso() {
-        return peso;
+        return this.peso;
     }
 
     /**
@@ -84,5 +70,33 @@ public class Prova {
      */
     public void setData(String data) {
         this.data = data;
+    }
+
+    /**
+     * @return the qtdQuestoesD
+     */
+    public int getQtdQuestoesD() {
+        return qtdQuestoesD;
+    }
+
+    /**
+     * @param qtdQuestoesD the qtdQuestoesD to set
+     */
+    public void setQtdQuestoesD(int qtdQuestoesD) {
+        this.qtdQuestoesD = qtdQuestoesD;
+    }
+
+    /**
+     * @return the qtdQuestoesO
+     */
+    public int getQtdQuestoesO() {
+        return qtdQuestoesO;
+    }
+
+    /**
+     * @param qtdQuestoesO the qtdQuestoesO to set
+     */
+    public void setQtdQuestoesO(int qtdQuestoesO) {
+        this.qtdQuestoesO = qtdQuestoesO;
     }
 }

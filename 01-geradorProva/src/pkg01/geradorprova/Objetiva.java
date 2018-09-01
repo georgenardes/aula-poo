@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg01.geradorprova;
 
 /**
  *
- * @author 6473091
+ * @author George
  */
 final class Objetiva extends Questao {
     private String[] opcoes;
     private int respostaCorreta;
+    
     
     public Objetiva (){
         this.opcoes = new String[5];
