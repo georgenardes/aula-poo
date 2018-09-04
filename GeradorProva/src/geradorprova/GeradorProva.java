@@ -1,5 +1,16 @@
 package geradorprova;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -8,8 +19,10 @@ import java.util.Scanner;
 
 public class GeradorProva {
     public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
+        int ci = 0; // Variavel para consistencias
+        float cf = 0; // Variavel para consistencias
         
+        Scanner scan = new Scanner(System.in);
         Prova p = new Prova();
         
         System.out.println("Qual o nome da disciplina?");
@@ -18,14 +31,61 @@ public class GeradorProva {
         System.out.println("Qual o local?");
         p.setLocal(scan.nextLine());
         
-        System.out.println("Qual a data da prova?");
-        p.setData(scan.nextLine());
+        System.out.println("Qual a data da prova? (dd/MM/yyyy)");
         
-        System.out.println("Qual é o peso da prova?");
-        p.setPeso(scan.nextInt());
+//        DateFormat df = DateFormat.getDateInstance();
+//        df.setLenient(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String dt = null;
+        int cond = -1;
+        while (cond < 0) {
+            try{
+                dt = scan.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate d = LocalDate.parse(dt, formatter);    
+                Date dataProva = sdf.parse(dt);
+                cond = 1;
+            }
+            catch(DateTimeParseException | ParseException ex) {
+                System.out.println("Data invalida! Digite novamente");
+            }
+        }    
+        System.out.println(dt);
+        p.setData(dt);
+        
+        System.out.println ("Qual é o peso da prova?");
+        
+        while ( cf < 1 ){
+            try{
+                cf = scan.nextFloat();
+                if (cf < 1){
+                    throw new InputMismatchException("Digite um numero valido");
+                }
+            }
+            catch(InputMismatchException ime){
+                System.out.println("Digite um numero valido!");
+                scan.nextLine();
+            }
+        }
+        p.setPeso(cf);
         
         System.out.println("Quantas questoes discursivas?");
-        p.setQtdQuestoesD(scan.nextInt());
+        
+        while ( ci < 1 ){
+            try{
+                ci = scan.nextInt();    
+                if (ci < 1){
+                    throw new InputMismatchException("Digite um numero valido");
+                }
+            }
+            catch(InputMismatchException ime){
+                System.out.println("Digite um numero valido!");
+                scan.nextLine();
+            }
+        }
+        
+        p.setQtdQuestoesD(ci);
         scan.nextLine();
        
         Discursiva[] ds = new Discursiva[p.getQtdQuestoesD()];

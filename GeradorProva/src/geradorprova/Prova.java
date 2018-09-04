@@ -11,7 +11,7 @@ package geradorprova;
  */
 public class Prova {
     private String disciplina;
-    private int peso;
+    private float peso;
     private String local;
     private String data;
     private String intrucoes;
@@ -90,14 +90,14 @@ public class Prova {
     /**
      * @return the peso
      */
-    public int getPeso() {
+    public float getPeso() {
         return this.peso;
     }
 
     /**
      * @param peso the peso to set
      */
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 
