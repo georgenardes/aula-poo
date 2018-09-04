@@ -147,7 +147,19 @@ public class GeradorProva {
             }
             ob[i].setOpcoes(tmp);
             System.out.println("\tOpcao correta:");
-            ob[i].setRespostaCorreta(scan.nextInt());
+            while ( ci < 1 ){
+                try{
+                    ci = scan.nextInt();    
+                    if (ci < 1){
+                        throw new InputMismatchException("Digite um numero valido");
+                    }
+                }
+                catch(InputMismatchException ime){
+                    System.out.println("Digite um numero valido!");
+                    scan.nextLine();
+                }
+            }
+            ob[i].setRespostaCorreta(ci);
             scan.nextLine();
             System.out.println("\tDigite o peso da questao:");
             while ( cf < 0 ){
