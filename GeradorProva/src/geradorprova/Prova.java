@@ -5,6 +5,15 @@
  */
 package geradorprova;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.dc.pr.PathStroker;
+
 /**
  *
  * @author nardes
@@ -30,7 +39,7 @@ public class Prova {
             getDiscursivas()[i] = d[i];
         }
     }
-    public void recebeInformacoes(Objetiva o[]){
+    public void recebeInformacoes(Objetiva[] o){
         this.setObjetivas(new Objetiva[this.getQtdQuestoesO()]);
         for (int i = 0; i < this.getQtdQuestoesO(); i++){
             this.getObjetivas()[i] = new Objetiva();
@@ -38,38 +47,25 @@ public class Prova {
         }
     }
     public void printProva(){
-        System.out.println("************************ Prova de "
-                +this.getDisciplina()+" ************************\n");
+        String retorno = "";
         
-        System.out.println("-|| Local: "+this.getLocal()+" |  | Data: "
-                +this.getData()+" |  | Peso: "+this.getPeso()+" ||\n\n");
-        System.out.println("Estudante:______________________________________");
-        
-        System.out.println("Instrucoes: "+this.intrucoes+"\n\n");
+        retorno += "************************ Prova de "
+                +this.getDisciplina()+" ************************\n";
+        retorno += "-|| Local: "+this.getLocal()+" |  | Data: "
+                +this.getData()+" |  | Peso: "+this.getPeso()+" ||\n\n";
+                
+        retorno += "Estudante:______________________________________";
+        retorno += "Instrucoes: "+this.intrucoes+"\n\n";
         
         int q= 1;
         for(int i = 0; i < this.getQtdQuestoesD(); i++, q++){
-            System.out.println(q+") Peso:"+getDiscursivas()[i].getPeso());
-            System.out.println("- "+getDiscursivas()[i].getPergunta());
-            System.out.println("\nCriterio de avaliacao: "+
-                    getDiscursivas()[i].getCriteriosCorrecao());
-            System.out.println("\tR:___________________________________________");
-            System.out.println("\t_____________________________________________");
-            System.out.println("\t_____________________________________________");
-            System.out.println("\t____________________________________________.\n");
-           
+            retorno += this.discursivas[i].printer(q);      
         }
         for (int i = 0; i < this.getQtdQuestoesO(); i++, q++){
-            System.out.println(q+") Peso:"+getObjetivas()[i].getPeso());
-            System.out.println("- "+getObjetivas()[i].getPergunta());
-            for (int j = 0; j < 5; j++){
-                System.out.println(j+1+") "+getObjetivas()[i].getOpcoes(j));
-            }
-            System.out.println("Alternativa correta "+
-                    getObjetivas()[i].getRespostaCorreta()+"\n");
-
+            retorno += this.objetivas[i].printer(q);
         }
         
+        System.out.println(retorno);
     }
     
 

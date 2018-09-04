@@ -9,7 +9,7 @@ package geradorprova;
  *
  * @author nardes
  */
-final class Objetiva extends Questao {
+public final class Objetiva extends Questao {
     private String[] opcoes;
     private int respostaCorreta;
     
@@ -19,6 +19,7 @@ final class Objetiva extends Questao {
     }
 
     /**
+     * @param o
      * @return the opcoes
      */
     public String getOpcoes(int o) {
@@ -44,6 +45,22 @@ final class Objetiva extends Questao {
      */
     public void setRespostaCorreta(int respostaCorreta) {
         this.respostaCorreta = respostaCorreta;
+    }
+
+    @Override
+    String printer(int q) {
+        String retorno = "";
+        
+        retorno += q+") Peso:"+this.getPeso()+"\n";
+        retorno += "- "+this.getPergunta()+"\n";
+ 
+        for (int j = 0; j < 5; j++){
+            retorno += j+1+") "+this.getOpcoes(j)+"\n";
+        }
+        retorno += "Alternativa correta "+
+                this.getRespostaCorreta()+"\n";
+
+        return retorno;
     }
     
     

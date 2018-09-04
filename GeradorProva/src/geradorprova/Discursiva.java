@@ -9,7 +9,7 @@ package geradorprova;
  *
  * @author nardes
  */
-final class Discursiva extends Questao {
+public final class Discursiva extends Questao {
     private String criteriosCorrecao;
     
     
@@ -25,6 +25,21 @@ final class Discursiva extends Questao {
      */
     public void setCriteriosCorrecao(String criteriosCorrecao) {
         this.criteriosCorrecao = criteriosCorrecao;
+    }
+
+    @Override
+    String printer(int q) {
+        String retorno = "";
+        retorno += q+") Peso:"+this.getPeso()+"\n";
+        retorno += "- "+this.getPergunta() +"\n";
+        retorno += "\nCriterio de avaliacao: "+
+                this.getCriteriosCorrecao() +"\n";
+        retorno += "\tR:___________________________________________\n";
+        retorno += "\tR:___________________________________________\n";
+        retorno += "\tR:___________________________________________\n";
+        retorno += "\tR:___________________________________________.\n";
+        return retorno;
+        
     }
     
 }

@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -19,29 +20,32 @@ public class GeradorProva {
     public static void main(String[] args){
         int ci = 0; // Variavel para consistencias
         float cf = 0; // Variavel para consistencias
-        
+        String auxi;
         Scanner scan = new Scanner(System.in);
         Prova p = new Prova();
         
-        System.out.println("Qual o nome da disciplina?");
-        p.setDisciplina(scan.nextLine()); 
+        auxi = JOptionPane.showInputDialog("Qual o nome da disciplina?");
+        p.setDisciplina(auxi); 
+        //System.out.println("Qual o nome da disciplina?");
+        //p.setDisciplina(scan.nextLine()); 
         
-        System.out.println("Qual o local?");
-        p.setLocal(scan.nextLine());
+        auxi = JOptionPane.showInputDialog("Qual o local?");
+        p.setLocal(auxi);
+        //System.out.println("Qual o local?");
+        //p.setLocal(scan.nextLine());
         
         System.out.println("Qual a data da prova? (dd/MM/yyyy)");
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         String dt = null;
-        int cond = -1;
-        while (cond < 0) {
+        while (true) {
             try{
                 dt = scan.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate d = LocalDate.parse(dt, formatter);    
                 Date dataProva = sdf.parse(dt);
-                cond = 1;
+                break;
             }
             catch(DateTimeParseException | ParseException ex) {
                 System.out.println("Data invalida! Digite novamente");
@@ -55,7 +59,7 @@ public class GeradorProva {
             try{
                 cf = scan.nextFloat();
                 if (cf < 1){
-                    throw new InputMismatchException("Digite um numero valido");
+                    throw new InputMismatchException("Digite um numero positivo");
                 }
             }
             catch(InputMismatchException ime){

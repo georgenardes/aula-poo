@@ -17,6 +17,10 @@ abstract class Questao {
         
     }
     
+    abstract String printer(int i);
+        
+    
+    
     /**
      * @return the pergunta
      */
