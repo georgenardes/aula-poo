@@ -1,6 +1,5 @@
 package geradorprova;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,8 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -33,8 +31,6 @@ public class GeradorProva {
         
         System.out.println("Qual a data da prova? (dd/MM/yyyy)");
         
-//        DateFormat df = DateFormat.getDateInstance();
-//        df.setLenient(false);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         String dt = null;
@@ -51,7 +47,6 @@ public class GeradorProva {
                 System.out.println("Data invalida! Digite novamente");
             }
         }    
-        System.out.println(dt);
         p.setData(dt);
         
         System.out.println ("Qual é o peso da prova?");
@@ -69,6 +64,7 @@ public class GeradorProva {
             }
         }
         p.setPeso(cf);
+        cf = -1;
         
         System.out.println("Quantas questoes discursivas?");
         
@@ -86,6 +82,7 @@ public class GeradorProva {
         }
         
         p.setQtdQuestoesD(ci);
+        ci = -1;
         scan.nextLine();
        
         Discursiva[] ds = new Discursiva[p.getQtdQuestoesD()];
@@ -99,12 +96,41 @@ public class GeradorProva {
             aux = scan.nextLine();
             ds[i].setCriteriosCorrecao(aux);
             System.out.println("\tDigite o peso da questao:");
-            ds[i].setPeso(scan.nextFloat());
+            
+            while ( cf < 0 ){
+                try{
+                    cf = scan.nextFloat();
+                    if (cf < 0){
+                        throw new InputMismatchException("Digite um numero valido");
+                    }
+                }catch(InputMismatchException ime){
+                    System.out.println("Digite um numero valido!");
+                    scan.nextLine();
+                }
+            }
+            
+            ds[i].setPeso(cf);
+            cf = -1;
+            
             System.out.println("\n----------------------------\n");
             scan.nextLine();
         }
         System.out.println("Quantas questoes objetivas?");
-        p.setQtdQuestoesO(scan.nextInt());
+        while ( ci < 1 ){
+            try{
+                ci = scan.nextInt();    
+                if (ci < 1){
+                    throw new InputMismatchException("Digite um numero valido");
+                }
+            }
+            catch(InputMismatchException ime){
+                System.out.println("Digite um numero valido!");
+                scan.nextLine();
+            }
+        }
+        
+        p.setQtdQuestoesO(ci);
+        ci = -1;
         scan.nextLine();
         
         Objetiva[] ob = new Objetiva[p.getQtdQuestoesO()];
@@ -124,14 +150,23 @@ public class GeradorProva {
             ob[i].setRespostaCorreta(scan.nextInt());
             scan.nextLine();
             System.out.println("\tDigite o peso da questao:");
-            ob[i].setPeso(scan.nextFloat());
+            while ( cf < 0 ){
+                try{
+                    cf = scan.nextFloat();
+                    if (cf < 0){
+                        throw new InputMismatchException("Digite um numero valido");
+                    }
+                }catch(InputMismatchException ime){
+                    System.out.println("Digite um numero valido!");
+                    scan.nextLine();
+                }
+            }
+            
+            ob[i].setPeso(cf);
             System.out.println("\n----------------------------\n");
             scan.nextLine();
             
         }
-//        System.out.println(p.getLocal());
-//        System.out.println(ds[1].getPergunta());
-//        System.out.println(ob[1].getPergunta());
         p.recebeInformacoes(ds);
         p.recebeInformacoes(ob);
         p.printProva();
