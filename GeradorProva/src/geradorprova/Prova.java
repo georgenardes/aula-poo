@@ -5,14 +5,9 @@
  */
 package geradorprova;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sun.dc.pr.PathStroker;
+import java.util.ArrayList;
+
+
 
 /**
  *
@@ -24,28 +19,16 @@ public class Prova {
     private String local;
     private String data;
     private String intrucoes;
-    private int qtdQuestoesD;
-    private int qtdQuestoesO;
-    private Discursiva[] discursivas;
-    private Objetiva[] objetivas;
+    private ArrayList<Questao> questoes;
+    private Questao auxiliar;
     
     public Prova (){
-        
+        questoes = new ArrayList<>();
     }
-    public void recebeInformacoes(Discursiva[] d){
-        this.setDiscursivas(new Discursiva[this.getQtdQuestoesD()]);
-        for (int i = 0; i < this.getQtdQuestoesD(); i++){
-            this.getDiscursivas()[i] = new Discursiva();
-            getDiscursivas()[i] = d[i];
-        }
+    public void recebeInformacoes(Questao q){
+        boolean add = this.questoes.add(q);
     }
-    public void recebeInformacoes(Objetiva[] o){
-        this.setObjetivas(new Objetiva[this.getQtdQuestoesO()]);
-        for (int i = 0; i < this.getQtdQuestoesO(); i++){
-            this.getObjetivas()[i] = new Objetiva();
-            getObjetivas()[i] = o[i];
-        }
-    }
+
     public void printProva(){
         String retorno = "";
         
@@ -55,14 +38,12 @@ public class Prova {
                 +this.getData()+" |  | Peso: "+this.getPeso()+" ||\n\n";
                 
         retorno += "Estudante:______________________________________";
-        retorno += "Instrucoes: "+this.intrucoes+"\n\n";
+        retorno += "Instrucoes: "+this.getIntrucoes()+"\n\n";
         
         int q= 1;
-        for(int i = 0; i < this.getQtdQuestoesD(); i++, q++){
-            retorno += this.discursivas[i].printer(q);      
-        }
-        for (int i = 0; i < this.getQtdQuestoesO(); i++, q++){
-            retorno += this.objetivas[i].printer(q);
+        for (Questao x: questoes){
+            retorno += x.printer(q);
+            q++;
         }
         
         System.out.println(retorno);
@@ -126,34 +107,6 @@ public class Prova {
     }
 
     /**
-     * @return the qtdQuestoesD
-     */
-    public int getQtdQuestoesD() {
-        return qtdQuestoesD;
-    }
-
-    /**
-     * @param qtdQuestoesD the qtdQuestoesD to set
-     */
-    public void setQtdQuestoesD(int qtdQuestoesD) {
-        this.qtdQuestoesD = qtdQuestoesD;
-    }
-
-    /**
-     * @return the qtdQuestoesO
-     */
-    public int getQtdQuestoesO() {
-        return qtdQuestoesO;
-    }
-
-    /**
-     * @param qtdQuestoesO the qtdQuestoesO to set
-     */
-    public void setQtdQuestoesO(int qtdQuestoesO) {
-        this.qtdQuestoesO = qtdQuestoesO;
-    }
-
-    /**
      * @return the intrucoes
      */
     public String getIntrucoes() {
@@ -168,30 +121,17 @@ public class Prova {
     }
 
     /**
-     * @return the discursivas
+     * @return the auxiliar
      */
-    public Discursiva[] getDiscursivas() {
-        return discursivas;
+    public Questao getAuxiliar() {
+        return auxiliar;
     }
 
     /**
-     * @param discursivas the discursivas to set
+     * @param auxiliar the auxiliar to set
      */
-    public void setDiscursivas(Discursiva[] discursivas) {
-        this.discursivas = discursivas;
+    public void setAuxiliar(Questao auxiliar) {
+        this.auxiliar = auxiliar;
     }
 
-    /**
-     * @return the objetivas
-     */
-    public Objetiva[] getObjetivas() {
-        return objetivas;
-    }
-
-    /**
-     * @param objetivas the objetivas to set
-     */
-    public void setObjetivas(Objetiva[] objetivas) {
-        this.objetivas = objetivas;
-    }
 }

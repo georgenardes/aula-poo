@@ -35,9 +35,9 @@ public final class Discursiva extends Questao {
         retorno += "\nCriterio de avaliacao: "+
                 this.getCriteriosCorrecao() +"\n";
         retorno += "\tR:___________________________________________\n";
-        retorno += "\tR:___________________________________________\n";
-        retorno += "\tR:___________________________________________\n";
-        retorno += "\tR:___________________________________________.\n";
+        retorno += "\t_____________________________________________\n";
+        retorno += "\t_____________________________________________\n";
+        retorno += "\t_____________________________________________.\n";
         return retorno;
         
     }

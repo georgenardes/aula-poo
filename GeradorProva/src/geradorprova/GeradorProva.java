@@ -5,14 +5,15 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
 /**
- *
+ *  Gravar em arquivo 
+ *  Usar array list para questões
+ *  Possibilidade de adicionar infinitas questões
  * @author George
  */
 
@@ -26,165 +27,124 @@ public class GeradorProva {
         
         auxi = JOptionPane.showInputDialog("Qual o nome da disciplina?");
         p.setDisciplina(auxi); 
-        //System.out.println("Qual o nome da disciplina?");
-        //p.setDisciplina(scan.nextLine()); 
-        
+
         auxi = JOptionPane.showInputDialog("Qual o local?");
         p.setLocal(auxi);
-        //System.out.println("Qual o local?");
-        //p.setLocal(scan.nextLine());
-        
-        System.out.println("Qual a data da prova? (dd/MM/yyyy)");
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        String dt = null;
         while (true) {
             try{
-                dt = scan.nextLine();
+                auxi = JOptionPane.showInputDialog("Digite a data (dd/MM/yyyy):");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate d = LocalDate.parse(dt, formatter);    
-                Date dataProva = sdf.parse(dt);
+                LocalDate.parse(auxi, formatter);    
+                sdf.parse(auxi);
                 break;
             }
             catch(DateTimeParseException | ParseException ex) {
-                System.out.println("Data invalida! Digite novamente");
+                JOptionPane.showMessageDialog(null,"Digite uma data valida!");
             }
         }    
-        p.setData(dt);
+        p.setData(auxi);
         
         System.out.println ("Qual é o peso da prova?");
         
-        while ( cf < 1 ){
+        while ( cf <= 0 ){
             try{
-                cf = scan.nextFloat();
-                if (cf < 1){
+                auxi = JOptionPane.showInputDialog("Qual o peso da prova?");
+                cf = Float.parseFloat(auxi);
+                if (cf <= 0){
                     throw new InputMismatchException("Digite um numero positivo");
                 }
             }
             catch(InputMismatchException ime){
-                System.out.println("Digite um numero valido!");
+                JOptionPane.showMessageDialog(null,"Digite um numero valido");
                 scan.nextLine();
             }
         }
         p.setPeso(cf);
         cf = -1;
-        
-        System.out.println("Quantas questoes discursivas?");
-        
-        while ( ci < 1 ){
-            try{
-                ci = scan.nextInt();    
-                if (ci < 1){
-                    throw new InputMismatchException("Digite um numero valido");
-                }
-            }
-            catch(InputMismatchException ime){
-                System.out.println("Digite um numero valido!");
-                scan.nextLine();
-            }
-        }
-        
-        p.setQtdQuestoesD(ci);
-        ci = -1;
-        scan.nextLine();
-       
-        Discursiva[] ds = new Discursiva[p.getQtdQuestoesD()];
-        for (int i = 0; i < p.getQtdQuestoesD(); i++){
-            ds[i] = new Discursiva();
-            String aux;
-            System.out.println("Digite a "+(i+1)+" questao:");
-            aux = scan.nextLine();
-            ds[i].setPergunta(aux);
-            System.out.println("\tDigite o criterio de avaliacao:");
-            aux = scan.nextLine();
-            ds[i].setCriteriosCorrecao(aux);
-            System.out.println("\tDigite o peso da questao:");
-            
-            while ( cf < 0 ){
-                try{
-                    cf = scan.nextFloat();
-                    if (cf < 0){
-                        throw new InputMismatchException("Digite um numero valido");
-                    }
-                }catch(InputMismatchException ime){
-                    System.out.println("Digite um numero valido!");
-                    scan.nextLine();
-                }
-            }
-            
-            ds[i].setPeso(cf);
-            cf = -1;
-            
-            System.out.println("\n----------------------------\n");
-            scan.nextLine();
-        }
-        System.out.println("Quantas questoes objetivas?");
-        while ( ci < 1 ){
-            try{
-                ci = scan.nextInt();    
-                if (ci < 1){
-                    throw new InputMismatchException("Digite um numero valido");
-                }
-            }
-            catch(InputMismatchException ime){
-                System.out.println("Digite um numero valido!");
-                scan.nextLine();
-            }
-        }
-        
-        p.setQtdQuestoesO(ci);
-        ci = -1;
-        scan.nextLine();
-        
-        Objetiva[] ob = new Objetiva[p.getQtdQuestoesO()];
-        for (int i = 0 ; i < p.getQtdQuestoesO(); i++){
-            ob[i] = new Objetiva();
-            String aux;
-            System.out.println("Digite a "+(i+1)+" questao:");
-            aux = scan.nextLine();
-            ob[i].setPergunta(aux);
-            String[] tmp = new String[5];
-            for (int j = 0; j < 5; j++){
-                System.out.println("\tDigite a "+(j+1)+" opcao:");
-                tmp[j] = scan.nextLine();
-            }
-            ob[i].setOpcoes(tmp);
-            System.out.println("\tOpcao correta:");
-            while ( ci < 1 ){
-                try{
-                    ci = scan.nextInt();    
-                    if (ci < 1){
-                        throw new InputMismatchException("Digite um numero valido");
+        boolean cond = false;
+        int cont = 1;
+        do {
+            auxi = JOptionPane.showInputDialog("Discursiva ou Objetiva"); // Implementar Dialog Box com D ou O
+            if ("Dis".equals(auxi)){
+                Discursiva ds = new Discursiva();
+                auxi = JOptionPane.showInputDialog("Digite a "+cont+" questao:");
+                ds.setPergunta(auxi);
+                auxi = JOptionPane.showInputDialog("Digite o criterio de avaliacao:");
+                ds.setCriteriosCorrecao(auxi);
+                
+                while ( cf <= 0 ){
+                    try{
+                        auxi = JOptionPane.showInputDialog("Digite o peso da questao:");
+                        cf = Float.parseFloat(auxi);
+                        if (cf <= 0){
+                            throw new InputMismatchException("Digite um numero"
+                                    + "maior que 0");
+                        }
+                    }catch(InputMismatchException ime){
+                        JOptionPane.showMessageDialog(null,"Digite um numero valido");
                     }
                 }
-                catch(InputMismatchException ime){
-                    System.out.println("Digite um numero valido!");
-                    scan.nextLine();
+                ds.setPeso(cf);
+                p.recebeInformacoes(ds);
+                cf = -1;
+                System.out.println("\n----------------------------\n");
+                cont++;
+            } 
+            else if ("Obj".equals(auxi)) {
+                Objetiva ob = new Objetiva();
+                auxi = JOptionPane.showInputDialog("Digite a "+cont+" questao:");
+                ob.setPergunta(auxi);
+                String[] tmp = new String[5];
+                for (int j = 0; j < 5; j++){
+                    tmp[j] = JOptionPane.showInputDialog("Digite a "+(j+1)+" opcao:");
                 }
-            }
-            ob[i].setRespostaCorreta(ci);
-            scan.nextLine();
-            System.out.println("\tDigite o peso da questao:");
-            while ( cf < 0 ){
-                try{
-                    cf = scan.nextFloat();
-                    if (cf < 0){
-                        throw new InputMismatchException("Digite um numero valido");
+                ob.setOpcoes(tmp);
+                
+                while ( ci < 1 || ci > 5) {
+                    try{
+                        auxi = JOptionPane.showInputDialog("Opcao correta:");
+                        ci = Integer.parseInt(auxi);    
+                        if (ci < 1){
+                            throw new InputMismatchException("Digite um numero maior que 0");
+                        }
                     }
-                }catch(InputMismatchException ime){
-                    System.out.println("Digite um numero valido!");
-                    scan.nextLine();
+                    catch(InputMismatchException ime){
+                        JOptionPane.showMessageDialog(null,"Digite um numero valido");
+                    }
+                }
+                ob.setRespostaCorreta(ci);
+                
+                while ( cf <= 0 ){
+                    try{
+                        auxi = JOptionPane.showInputDialog("Digite o peso da questao:");
+                        cf = Float.parseFloat(auxi);
+                        if (cf <= 0){
+                            throw new InputMismatchException("Digite um numero maior que 0");
+                        }
+                    }catch(InputMismatchException ime){
+                        JOptionPane.showMessageDialog(null,"Digite um numero valido");
+                    }
+                }
+                ob.setPeso(cf);
+                p.recebeInformacoes(ob);
+                System.out.println("\n----------------------------\n");
+                cont++;
+            }
+            if (cont == 1){
+                JOptionPane.showMessageDialog(null, "Voce nao pode criar uma prova sem questoes!");
+            }
+            else{
+                int choice;
+                choice = JOptionPane.showConfirmDialog(null,
+                        "Deseja inserir outra questao?", "Sim ou nao", JOptionPane.YES_NO_OPTION);
+                if (choice != 0) {
+                    cond = true;
                 }
             }
-            
-            ob[i].setPeso(cf);
-            System.out.println("\n----------------------------\n");
-            scan.nextLine();
-            
-        }
-        p.recebeInformacoes(ds);
-        p.recebeInformacoes(ob);
+        } while (cond == false);
+        
         p.printProva();
     }
 }
