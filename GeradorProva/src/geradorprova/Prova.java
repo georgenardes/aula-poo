@@ -20,7 +20,7 @@ public class Prova {
     private String data;
     private String intrucoes;
     private ArrayList<Questao> questoes;
-    private Questao auxiliar;
+   // private Questao auxiliar;
     
     public Prova (){
         questoes = new ArrayList<>();
@@ -120,18 +120,18 @@ public class Prova {
         this.intrucoes = intrucoes;
     }
 
-    /**
-     * @return the auxiliar
-     */
-    public Questao getAuxiliar() {
-        return auxiliar;
-    }
-
-    /**
-     * @param auxiliar the auxiliar to set
-     */
-    public void setAuxiliar(Questao auxiliar) {
-        this.auxiliar = auxiliar;
-    }
+//    /**
+//     * @return the auxiliar
+//     */
+//    public Questao getAuxiliar() {
+//        return auxiliar;
+//    }
+//
+//    /**
+//     * @param auxiliar the auxiliar to set
+//     */
+//    public void setAuxiliar(Questao auxiliar) {
+//        this.auxiliar = auxiliar;
+//    }
 
 }

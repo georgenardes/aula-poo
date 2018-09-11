@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class GeradorProva {
     public static void main(String[] args){
         int ci = 0; // Variavel para consistencias
-        float cf = 0; // Variavel para consistencias
+        float cf = -1; // Variavel para consistencias
         String auxi;
         Scanner scan = new Scanner(System.in);
         Prova p = new Prova();
@@ -46,8 +46,6 @@ public class GeradorProva {
         }    
         p.setData(auxi);
         
-        System.out.println ("Qual é o peso da prova?");
-        
         while ( cf <= 0 ){
             try{
                 auxi = JOptionPane.showInputDialog("Qual o peso da prova?");
@@ -56,18 +54,26 @@ public class GeradorProva {
                     throw new InputMismatchException("Digite um numero positivo");
                 }
             }
-            catch(InputMismatchException ime){
+            catch(InputMismatchException | NumberFormatException ime){
                 JOptionPane.showMessageDialog(null,"Digite um numero valido");
-                scan.nextLine();
             }
         }
         p.setPeso(cf);
         cf = -1;
         boolean cond = false;
         int cont = 1;
+        /*
+        Inicio entrada de questoes
+        */
         do {
-            auxi = JOptionPane.showInputDialog("Discursiva ou Objetiva"); // Implementar Dialog Box com D ou O
-            if ("Dis".equals(auxi)){
+            Object[] option = {"Discursiva", "Objetiva"};
+            int op =  JOptionPane.showOptionDialog(null,
+                    "Voce deseja inserir que tipo de questao?",
+                    "Questao",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, option, option[0]);
+            if (op == 0){
                 Discursiva ds = new Discursiva();
                 auxi = JOptionPane.showInputDialog("Digite a "+cont+" questao:");
                 ds.setPergunta(auxi);
@@ -92,7 +98,7 @@ public class GeradorProva {
                 System.out.println("\n----------------------------\n");
                 cont++;
             } 
-            else if ("Obj".equals(auxi)) {
+            else if (op == 1) {
                 Objetiva ob = new Objetiva();
                 auxi = JOptionPane.showInputDialog("Digite a "+cont+" questao:");
                 ob.setPergunta(auxi);
@@ -106,8 +112,8 @@ public class GeradorProva {
                     try{
                         auxi = JOptionPane.showInputDialog("Opcao correta:");
                         ci = Integer.parseInt(auxi);    
-                        if (ci < 1){
-                            throw new InputMismatchException("Digite um numero maior que 0");
+                        if (ci < 1 || ci > 5){
+                            throw new InputMismatchException("Digite um numero entre 1 e 5");
                         }
                     }
                     catch(InputMismatchException ime){
