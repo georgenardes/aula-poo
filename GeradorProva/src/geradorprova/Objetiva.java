@@ -58,7 +58,7 @@ public final class Objetiva extends Questao {
             retorno += j+1+") "+this.getOpcoes(j)+"\n";
         }
         retorno += "Alternativa correta "+
-                this.getRespostaCorreta()+"\n";
+                this.getRespostaCorreta()+"\n\n";
 
         return retorno;
     }

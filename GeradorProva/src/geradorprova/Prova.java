@@ -5,6 +5,7 @@
  */
 package geradorprova;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -20,17 +21,18 @@ public class Prova {
     private String data;
     private String intrucoes;
     private ArrayList<Questao> questoes;
-   // private Questao auxiliar;
     
     public Prova (){
         questoes = new ArrayList<>();
     }
     public void recebeInformacoes(Questao q){
-        boolean add = this.questoes.add(q);
+        this.questoes.add(q);
     }
+    
 
-    public void printProva(){
+    public void salvarProva(){
         String retorno = "";
+        File fl = new File("\\home\\nardes");
         
         retorno += "************************ Prova de "
                 +this.getDisciplina()+" ************************\n";
@@ -120,18 +122,5 @@ public class Prova {
         this.intrucoes = intrucoes;
     }
 
-//    /**
-//     * @return the auxiliar
-//     */
-//    public Questao getAuxiliar() {
-//        return auxiliar;
-//    }
-//
-//    /**
-//     * @param auxiliar the auxiliar to set
-//     */
-//    public void setAuxiliar(Questao auxiliar) {
-//        this.auxiliar = auxiliar;
-//    }
 
 }

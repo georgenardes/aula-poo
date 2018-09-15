@@ -51,10 +51,11 @@ public class GeradorProva {
                 auxi = JOptionPane.showInputDialog("Qual o peso da prova?");
                 cf = Float.parseFloat(auxi);
                 if (cf <= 0){
-                    throw new InputMismatchException("Digite um numero positivo");
+                    JOptionPane.showMessageDialog(null,"Digite um numero positivo");
                 }
             }
-            catch(InputMismatchException | NumberFormatException ime){
+            
+            catch(NumberFormatException ime){
                 JOptionPane.showMessageDialog(null,"Digite um numero valido");
             }
         }
@@ -85,17 +86,15 @@ public class GeradorProva {
                         auxi = JOptionPane.showInputDialog("Digite o peso da questao:");
                         cf = Float.parseFloat(auxi);
                         if (cf <= 0){
-                            throw new InputMismatchException("Digite um numero"
-                                    + "maior que 0");
+                            JOptionPane.showMessageDialog(null,"Digite um numero positivo");
                         }
-                    }catch(InputMismatchException ime){
+                    }catch(NumberFormatException nfe){
                         JOptionPane.showMessageDialog(null,"Digite um numero valido");
                     }
                 }
                 ds.setPeso(cf);
                 p.recebeInformacoes(ds);
                 cf = -1;
-                System.out.println("\n----------------------------\n");
                 cont++;
             } 
             else if (op == 1) {
@@ -113,10 +112,10 @@ public class GeradorProva {
                         auxi = JOptionPane.showInputDialog("Opcao correta:");
                         ci = Integer.parseInt(auxi);    
                         if (ci < 1 || ci > 5){
-                            throw new InputMismatchException("Digite um numero entre 1 e 5");
+                            JOptionPane.showMessageDialog(null,"Digite um numero entre 1 e 5");
                         }
                     }
-                    catch(InputMismatchException ime){
+                    catch(NumberFormatException nfe){
                         JOptionPane.showMessageDialog(null,"Digite um numero valido");
                     }
                 }
@@ -127,15 +126,15 @@ public class GeradorProva {
                         auxi = JOptionPane.showInputDialog("Digite o peso da questao:");
                         cf = Float.parseFloat(auxi);
                         if (cf <= 0){
-                            throw new InputMismatchException("Digite um numero maior que 0");
+                            JOptionPane.showMessageDialog(null,"Digite um numero positivo");
                         }
-                    }catch(InputMismatchException ime){
+                    }catch(NumberFormatException nfe){
                         JOptionPane.showMessageDialog(null,"Digite um numero valido");
                     }
                 }
                 ob.setPeso(cf);
                 p.recebeInformacoes(ob);
-                System.out.println("\n----------------------------\n");
+                cf = -1;
                 cont++;
             }
             if (cont == 1){
