@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
@@ -22,7 +20,6 @@ public class GeradorProva {
         int ci = 0; // Variavel para consistencias
         float cf = -1; // Variavel para consistencias
         String auxi;
-        Scanner scan = new Scanner(System.in);
         Prova p = new Prova();
         
         auxi = JOptionPane.showInputDialog("Qual o nome da disciplina?");
@@ -150,6 +147,6 @@ public class GeradorProva {
             }
         } while (cond == false);
         
-        p.printProva();
+        p.salvarProva();
     }
 }

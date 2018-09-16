@@ -5,8 +5,11 @@
  */
 package geradorprova;
 
-import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -19,33 +22,49 @@ public class Prova {
     private float peso;
     private String local;
     private String data;
-    private String intrucoes;
-    private ArrayList<Questao> questoes;
+    private String instrucoes;
+    private final ArrayList<Questao> questoes;
     
     public Prova (){
         questoes = new ArrayList<>();
+        this.instrucoes = "\nRespostas à caneta. \nAtribuirá nota 0 ao aluno que"
+                + "for pego usando de meios fraudulentos\n para responder as questões.";
     }
-    public void recebeInformacoes(Questao q){
+    public void recebeInformacoes(Questao q) {
         this.questoes.add(q);
     }
     
 
-    public void salvarProva(){
+    public void salvarProva() {
         String retorno = "";
-        File fl = new File("\\home\\nardes");
-        
+        System.out.println("\t\tPré-visualização da prova\n\n");
         retorno += "************************ Prova de "
                 +this.getDisciplina()+" ************************\n";
         retorno += "-|| Local: "+this.getLocal()+" |  | Data: "
                 +this.getData()+" |  | Peso: "+this.getPeso()+" ||\n\n";
                 
         retorno += "Estudante:______________________________________";
-        retorno += "Instrucoes: "+this.getIntrucoes()+"\n\n";
+        retorno += "Instrucoes: "+this.getInstrucoes()+"\n\n";
         
         int q= 1;
         for (Questao x: questoes){
             retorno += x.printer(q);
             q++;
+        }
+        
+        String nome = JOptionPane.showInputDialog("Digite o nome do arquivo ou o "
+                + "diretório no qual deseja salvar a prova:");
+        if (nome == null)
+            System.exit(0);
+
+        try {
+            try (PrintWriter file = new PrintWriter(new FileWriter(nome))) {
+                file.print(retorno);
+            }
+        }
+        catch (IOException ioex) {
+            JOptionPane.showMessageDialog(null, "Erro ocorrido ao gravar arquivo"
+                    + "!", "Erro", 0);
         }
         
         System.out.println(retorno);
@@ -109,17 +128,17 @@ public class Prova {
     }
 
     /**
-     * @return the intrucoes
+     * @return the instrucoes
      */
-    public String getIntrucoes() {
-        return intrucoes;
+    public String getInstrucoes() {
+        return instrucoes;
     }
 
     /**
-     * @param intrucoes the intrucoes to set
+     * @param instrucoes the instrucoes to set
      */
-    public void setIntrucoes(String intrucoes) {
-        this.intrucoes = intrucoes;
+    public void setInstrucoes(String instrucoes) {
+        this.instrucoes = instrucoes;
     }
 
 
