@@ -7,15 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
-
 /**
- *  Gravar em arquivo 
- *  Usar array list para questões
- *  Possibilidade de adicionar infinitas questões
  * @author George
  */
 
 public class GeradorProva {
+    
     public static void main(String[] args){
         int ci = 0; // Variavel para consistencias
         float cf = -1; // Variavel para consistencias
