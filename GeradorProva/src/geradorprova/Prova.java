@@ -27,8 +27,8 @@ public class Prova {
     
     public Prova (){
         questoes = new ArrayList<>();
-        this.instrucoes = "\nRespostas à caneta. \nAtribuirá nota 0 ao aluno que"
-                + "for pego usando de meios fraudulentos\n para responder as questões.";
+        this.instrucoes = "Respostas à caneta.\nAtribuirá nota 0 ao aluno que"
+                + " for pego usando de meios fraudulentos\npara responder as questões.";
     }
     public void recebeInformacoes(Questao q) {
         this.questoes.add(q);
@@ -44,7 +44,7 @@ public class Prova {
                 +this.getData()+" |  | Peso: "+this.getPeso()+" ||\n\n";
                 
         retorno += "Estudante:______________________________________";
-        retorno += "Instrucoes: "+this.getInstrucoes()+"\n\n";
+        retorno += "\nInstrucoes: "+this.getInstrucoes()+"\n\n";
         
         int q= 1;
         for (Questao x: questoes){
