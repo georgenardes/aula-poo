@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"><![CDATA[
+    tools:context=".MainActivity">
+
+    ]]>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="181dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="80dp"
+            android:tint="#3dac99"
+            app:srcCompat="@drawable/baseline_person_black_48" />
+
+
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+
+    </RelativeLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/name_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <ImageView
+            android:id="@+id/person_view"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_person_black_18" />
+
+
+        <EditText
+            android:id="@+id/Name"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/arrowDown1"
+            app:layout_constraintStart_toEndOf="@+id/person_view"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <EditText
+            android:id="@+id/Last_name"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/Name"
+            app:layout_constraintStart_toStartOf="@+id/Name"
+            app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+
+        <ImageView
+            android:id="@+id/arrowDown1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:layout_constraintBottom_toBottomOf="@+id/Name"
+            app:layout_constraintTop_toTopOf="@+id/Name"
+            app:srcCompat="@drawable/baseline_expand_more_black_18"
+            tools:layout_editor_absoluteX="363dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/phone_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/name_layout">
+
+        <ImageView
+            android:id="@+id/phone_view"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_phone_black_18" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@android:string/emptyPhoneNumber"
+            android:inputType="phone"
+            android:text="Phone"
+            app:layout_constraintEnd_toStartOf="@+id/arrow_down2"
+            app:layout_constraintStart_toEndOf="@+id/phone_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/arrow_down2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_number"
+            app:layout_constraintTop_toTopOf="@+id/phone_number"
+            app:layout_constraintVertical_bias="0.478"
+            app:srcCompat="@drawable/baseline_expand_more_black_18"
+            tools:layout_editor_absoluteX="363dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

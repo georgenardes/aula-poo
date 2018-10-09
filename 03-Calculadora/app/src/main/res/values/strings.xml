@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Calc_financeira</string>
+    <string name="montante">Montante:</string>
+    <string name="valor">00000.00</string>
+    <string name="capital">Capital:</string>
+    <string name="taxa">Taxa fixa:</string>
+    <string name="periodo">Periodo de tempo:</string>
+    <string name="ano">ano</string>
+    <string name="mes">mês</string>
+    <string name="dia">dia</string>
+    <string name="calcular">Calcular</string>
+    <string name="Juros_composto">Juros Composto</string>
+    <string name="Juros_simples">Juros Simples</string>
+    <string name="valorf">Valor final:</string>
+    <string name="inf_cap">Informe o capital</string>
+    <string name="inf_tax">Informe a taxa</string>
+    <string name="inf_per">Informe o periodo</string>
+
+
+</resources>
