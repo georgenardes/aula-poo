@@ -8,6 +8,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -56,20 +57,21 @@ public class MainActivity extends AppCompatActivity {
                 d_mont = d_cap + (d_cap * d_tax * d_per);
             }
             else if (j_c.isChecked()) {
-                d_tax += 1;
-                for (int i = 0; i < d_per; i++)
-                    d_tax *= d_tax;
-                d_mont = d_cap * d_tax;
+                d_tax += 1.0;
+                double d_fin_tax = ((float)d_tax);
+                for (int i = 1; i < d_per; i++)
+                    d_fin_tax = d_tax * d_fin_tax;
+                d_mont = d_cap * d_fin_tax;
             }
 
             if (ano.isChecked()) {
-                resultado.setText(""+(float)d_mont+" em "+(float)d_per+" ano(s).\n");
+                resultado.setText("R$"+((float) d_mont)+" em "+((float)d_per)+" ano(s).\n");
             }
             else if (mes.isChecked()) {
-                resultado.setText(""+(float)d_mont+" em "+(float)d_per+" mês(es).\n");
+                resultado.setText("R$"+((float) d_mont)+" em "+(float)d_per+" mês(es).\n");
             }
             else if (dia.isChecked()) {
-                resultado.setText(""+(float)d_mont+" em "+(float)d_per+" dia(s).\n");
+                resultado.setText("R$"+((float) d_mont)+" em "+((float)d_per)+" dia(s).\n");
             }
 
 
@@ -78,11 +80,6 @@ public class MainActivity extends AppCompatActivity {
             Toast mensagemErro = Toast.makeText(this, "Algo errado aconteceu", Toast.LENGTH_LONG);
             mensagemErro.show();
         }
-
-
-
-
-
 
     }
 

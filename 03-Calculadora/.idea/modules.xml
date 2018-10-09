@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Calc_financeira.iml" filepath="$PROJECT_DIR$/Calc_financeira.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-Calculadora.iml" filepath="$PROJECT_DIR$/03-Calculadora.iml" />
+      <module fileurl="file://C:\Users\6473091\Desktop\aula-poo\03-Calculadora\Calc_financeira.iml" filepath="C:\Users\6473091\Desktop\aula-poo\03-Calculadora\Calc_financeira.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\6473091\Desktop\aula-poo\03-Calculadora\app\app.iml" filepath="C:\Users\6473091\Desktop\aula-poo\03-Calculadora\app\app.iml" />
     </modules>
   </component>
 </project>
