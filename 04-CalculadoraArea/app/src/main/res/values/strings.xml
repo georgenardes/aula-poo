@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">04-calculadora-area</string>
+    <string name="title_activity_operacao_quadrado">OperacaoQuadrado</string>
+</resources>
