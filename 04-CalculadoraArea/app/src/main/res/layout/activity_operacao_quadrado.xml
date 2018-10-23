@@ -69,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvBaseInf" />
 
     <Button
+        android:onClick="onClickAvancar"
         android:id="@+id/bAvancar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
