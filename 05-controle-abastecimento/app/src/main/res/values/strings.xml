@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Controle de Abastecimento</string>
+    <string name="autoAtual">Autonomia atual</string>
+    <string name="salvar">Salvar</string>
+    <string name="kmAtual">Km atual</string>
+    <string name="lAbastecidos">Litros abastecidos</string>
+    <string name="dataAbastecimento">Data de abastecimento</string>
+    <string name="posto">Posto</string>
+    <string name="voltar">Voltar</string>
+    <string name="escolhaPosto">Selecione o posto</string>
+
+    <string-array name="arrayPosto">
+        <item>Texaco</item>
+        <item>Ipiranga</item>
+        <item>Ale</item>
+        <item>Shell</item>
+        <item>Petrobras</item>
+        <item>Outros</item>
+    </string-array>
+
+</resources>

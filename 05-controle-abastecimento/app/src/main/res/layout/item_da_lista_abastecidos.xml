@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteY="81dp">
+
+    <ImageView
+        android:id="@+id/ivFoto_do_posto"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_add_circle_outline_24" />
+
+    <TextView
+        android:id="@+id/tv_Data_de_abastecimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="dd/mm/aaaa"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto_do_posto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_km"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Km:"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFoto_do_posto"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto_do_posto" />
+
+    <TextView
+        android:id="@+id/tv_km_de_abastecimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="xxx"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_km"
+        app:layout_constraintStart_toEndOf="@+id/tv_km" />
+
+    <TextView
+        android:id="@+id/tv_litros_abastecidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="xx"
+        app:layout_constraintBottom_toTopOf="@+id/tv_km_de_abastecimento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Data_de_abastecimento" />
+</android.support.constraint.ConstraintLayout>
