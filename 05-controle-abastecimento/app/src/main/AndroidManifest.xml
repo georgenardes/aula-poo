@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MostraAutoActivity" />
-        <activity android:name=".AbastecerActivity"></activity>
+        <activity android:name=".AbastecerActivity" />
+        <activity android:name=".ListaActivity"></activity>
     </application>
 
 </manifest>

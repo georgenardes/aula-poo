@@ -12,10 +12,8 @@
     <string-array name="arrayPosto">
         <item>Texaco</item>
         <item>Ipiranga</item>
-        <item>Ale</item>
         <item>Shell</item>
         <item>Petrobras</item>
-        <item>Outros</item>
     </string-array>
 
 </resources>

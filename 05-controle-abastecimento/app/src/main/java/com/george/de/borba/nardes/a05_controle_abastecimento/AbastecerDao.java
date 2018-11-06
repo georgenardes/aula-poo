@@ -37,9 +37,9 @@ public class AbastecerDao {
     }
 
     public static ArrayList<Abastecer> getLista(Context c){
-        AL_CACHE = new ArrayList<>();
+        AL_CACHE = new ArrayList<Abastecer>();
 
-        File refArquivo = new File( c.getFilesDir().getPath() + NOME_ARQUIVO );
+        File refArquivo = new File( c.getFilesDir().getPath() + NOME_ARQUIVO);
 
         try {
             FileReader leitor = new FileReader(refArquivo);
