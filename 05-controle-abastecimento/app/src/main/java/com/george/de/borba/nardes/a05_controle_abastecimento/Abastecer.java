@@ -1,6 +1,6 @@
 package com.george.de.borba.nardes.a05_controle_abastecimento;
 
-import java.util.Date;
+
 
 public class Abastecer {
     private double km_atual;

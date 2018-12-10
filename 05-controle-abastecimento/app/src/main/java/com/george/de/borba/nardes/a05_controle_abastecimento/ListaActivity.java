@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 public class ListaActivity extends AppCompatActivity {
-
+    private double last_km;
     private AbastecerAdapter adaptador;
     private final int ADICIONAR_ABASTECIMENTO = 123;
 
@@ -18,6 +18,7 @@ public class ListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
+        last_km = getIntent().getDoubleExtra("last_km", 0);
         RecyclerView rvListasAbastecer = findViewById(R.id.rvListaAbastecimentos);
 
         this.adaptador = new AbastecerAdapter();
@@ -32,6 +33,7 @@ public class ListaActivity extends AppCompatActivity {
 
     public void onClickAdd (View v) {
         Intent intencaoAbrirAbastecer = new Intent(this.getApplicationContext(), AbastecerActivity.class);
+        intencaoAbrirAbastecer.putExtra("last_km", last_km);
         startActivityForResult(intencaoAbrirAbastecer, ADICIONAR_ABASTECIMENTO);
 
     }
@@ -42,13 +44,9 @@ public class ListaActivity extends AppCompatActivity {
         if(requestCode == ADICIONAR_ABASTECIMENTO){
             //estou tratando o fechamento da activity AdicionarAvaliacaoActivity
             if(resultCode == 1){
-                Toast.makeText(this.getApplicationContext(), "AÇÃO 1!!!!!", Toast.LENGTH_LONG).show();
                 this.adaptador.notifyDataSetChanged();
             }else if (resultCode == 2){
-                Toast.makeText(this.getApplicationContext(), "AÇÃO 2 -- -- - - - - - - ", Toast.LENGTH_LONG).show();
                 this.adaptador.notifyDataSetChanged();
-            }else if (resultCode == 0){
-                Toast.makeText(this.getApplicationContext(), "BACK BUTTON (PROVÁVEL)...", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this.getApplicationContext(), "Retorno não tratado...", Toast.LENGTH_LONG).show();
             }

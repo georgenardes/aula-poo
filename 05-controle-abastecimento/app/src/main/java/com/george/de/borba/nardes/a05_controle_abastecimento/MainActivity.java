@@ -3,17 +3,14 @@ package com.george.de.borba.nardes.a05_controle_abastecimento;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private double last_km;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (abastecerList.size() > 1) {
             double km;
+            this.last_km = abastecerList.get(abastecerList.size()-1).getKm_atual();
             km = abastecerList.get(abastecerList.size()-1).getKm_atual() - abastecerList.get(0).getKm_atual();
             double litros = 0;
 
@@ -58,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClickVerHistoria(View v)
     {
         Intent intent = new Intent(this.getApplicationContext(), ListaActivity.class);
+        intent.putExtra("last_km", last_km);
         startActivity(intent);
+    }
+
+    public double getLast_km() {
+        return last_km;
+    }
+
+    public void setLast_km(double last_km) {
+        this.last_km = last_km;
     }
 }

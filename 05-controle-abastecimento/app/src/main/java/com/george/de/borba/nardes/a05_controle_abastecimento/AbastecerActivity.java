@@ -14,13 +14,17 @@ public class AbastecerActivity extends AppCompatActivity {
     private EditText et_km;
     private EditText et_litros;
     private EditText et_data;
+    private double last_km;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abastecer);
+        last_km = getIntent().getDoubleExtra("last_km", 0);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getApplicationContext(),R.array.arrayPosto, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,R.array.arrayPosto,
+                android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         s_posto = (Spinner) findViewById(R.id.spinnerPostos);
@@ -42,23 +46,27 @@ public class AbastecerActivity extends AppCompatActivity {
         String data = et_data.getText().toString();
         String posto =  s_posto.getSelectedItem().toString();
 
-        Abastecer ab = new Abastecer();
+        if (km_atual < last_km ) {
+            et_km.setError("Km atual menor que o anterior");
+        } else {
+            Abastecer ab = new Abastecer();
+            ab.setKm_atual(km_atual);
+            ab.setLitros_abastecidos(litros_ab);
+            ab.setData(data);
+            ab.setPosto(posto);
 
-        ab.setKm_atual(km_atual);
-        ab.setLitros_abastecidos(litros_ab);
-        ab.setData(data);
-        ab.setPosto(posto);
+            boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
 
-        boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
+            if (sucesso_salvar) {
+                setResult(1);
+                finish();
 
-        if (sucesso_salvar) {
-            setResult(1);
-            finish();
+            }
+            else
+            {
+                Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
+            }
 
-        }
-        else
-        {
-            Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
         }
 
     }
