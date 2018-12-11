@@ -79,7 +79,7 @@ public class AbastecerActivity extends AppCompatActivity {
         if (km_atual < last_km ) {
             et_km.setError("Km atual menor que o anterior");
         } else {
-            if (permissao == true) {
+            if (permissao) {
                 LocationGPS g = new LocationGPS(getApplicationContext());
                 Location l = g.getLocation();
                 if (l != null){
