@@ -1,5 +1,10 @@
 package com.george.de.borba.nardes.a05_controle_abastecimento;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +20,29 @@ public class AbastecerActivity extends AppCompatActivity {
     private EditText et_litros;
     private EditText et_data;
     private double last_km;
+    private boolean permissao;
+    private LocationManager locationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abastecer);
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+        else{
+            permissao = true;
+        }
+
+
+
         last_km = getIntent().getDoubleExtra("last_km", 0);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -46,29 +69,38 @@ public class AbastecerActivity extends AppCompatActivity {
         String data = et_data.getText().toString();
         String posto =  s_posto.getSelectedItem().toString();
 
+
+        Abastecer ab = new Abastecer();
+        ab.setKm_atual(km_atual);
+        ab.setLitros_abastecidos(litros_ab);
+        ab.setData(data);
+        ab.setPosto(posto);
+
         if (km_atual < last_km ) {
             et_km.setError("Km atual menor que o anterior");
         } else {
-            Abastecer ab = new Abastecer();
-            ab.setKm_atual(km_atual);
-            ab.setLitros_abastecidos(litros_ab);
-            ab.setData(data);
-            ab.setPosto(posto);
-
-            boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
-
-            if (sucesso_salvar) {
-                setResult(1);
-                finish();
-
+            if (permissao == true) {
+                LocationGPS g = new LocationGPS(getApplicationContext());
+                Location l = g.getLocation();
+                if (l != null){
+                    ab.setLat(l.getLatitude());
+                    ab.setLog(l.getLongitude());
+                } else {
+                    ab.setLat(90);
+                    ab.setLog(190);
+                }
             }
-            else
-            {
-                Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
-            }
+        }
+        boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
+
+        if (sucesso_salvar) {
+            setResult(1);
+            finish();
 
         }
-
+        else
+        {
+            Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }

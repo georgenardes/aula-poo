@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.george.de.borba.nardes.a05_controle_abastecimento">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.locationGPS.gps" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +24,8 @@
         </activity>
         <activity android:name=".MostraAutoActivity" />
         <activity android:name=".AbastecerActivity" />
-        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".ListaActivity" />
+        <activity android:name=".ShowMap"></activity>
     </application>
 
 </manifest>

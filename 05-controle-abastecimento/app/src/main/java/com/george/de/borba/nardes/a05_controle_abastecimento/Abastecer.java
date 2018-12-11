@@ -7,7 +7,8 @@ public class Abastecer {
     private double litros_abastecidos;
     private String data;
     private String posto;
-
+    private double lat;
+    private double log;
 
     public double getKm_atual() {
         return km_atual;
@@ -39,5 +40,21 @@ public class Abastecer {
 
     public void setPosto(String posto) {
         this.posto = posto;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLog() {
+        return log;
+    }
+
+    public void setLog(double log) {
+        this.log = log;
     }
 }
