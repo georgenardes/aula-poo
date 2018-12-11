@@ -80,7 +80,7 @@ public class AbastecerActivity extends AppCompatActivity {
             et_km.setError("Km atual menor que o anterior");
         } else {
             if (permissao) {
-                LocationGPS g = new LocationGPS(getApplicationContext());
+                LocationGPS g = new LocationGPS(this.getApplicationContext());
                 Location l = g.getLocation();
                 if (l != null){
                     ab.setLat(l.getLatitude());
@@ -89,18 +89,42 @@ public class AbastecerActivity extends AppCompatActivity {
                     ab.setLat(90);
                     ab.setLog(190);
                 }
+                boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
+
+                if (sucesso_salvar) {
+                    setResult(1);
+                    finish();
+
+                }
+                else
+                {
+                    Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(this.getApplicationContext(), "Sem permissão", Toast.LENGTH_SHORT).show();
             }
         }
-        boolean sucesso_salvar = AbastecerDao.salvar(this, ab);
-
-        if (sucesso_salvar) {
-            setResult(1);
-            finish();
-
-        }
-        else
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        switch (requestCode)
         {
-            Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_SHORT).show();
+            case 1:
+            {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    permissao = true;
+                }
+                else
+                {
+                    //Permissao nao garantida
+                }
+                return;
+            }
         }
     }
+
 }

@@ -33,6 +33,7 @@ public class ListaActivity extends AppCompatActivity {
 
     public void onClickAdd (View v) {
         Intent intencaoAbrirAbastecer = new Intent(this.getApplicationContext(), AbastecerActivity.class);
+        last_km = this.adaptador.listaAbastecer.get(this.adaptador.listaAbastecer.size() - 1).getKm_atual();
         intencaoAbrirAbastecer.putExtra("last_km", last_km);
         startActivityForResult(intencaoAbrirAbastecer, ADICIONAR_ABASTECIMENTO);
 
@@ -41,6 +42,7 @@ public class ListaActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode == ADICIONAR_ABASTECIMENTO){
             //estou tratando o fechamento da activity AdicionarAvaliacaoActivity
             if(resultCode == 1){
